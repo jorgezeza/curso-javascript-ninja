@@ -19,7 +19,7 @@
     var name = 'jorge';
 
     for(var i = 0; i< name.length; i++) {
-        console.log(name.charAt(i)+' é a posição '+ i +'ª letra do meu nome.');
+        console.log(name.charAt(i)+' é a posição '+ (i + 1) +'ª letra do meu nome.');
     }
 
     /*
@@ -35,8 +35,15 @@
     console.log para cada formato.
     */
     console.log( '\nNome convertido à partir de um slug:' );
-    var fullName = 'jorge-nunes';
-    console.log(fullName.charAt(0).toUpperCase() + fullName.slice(1).split('-').join(' '));
+    var fullName = 'jorge-luiz-nunes';
+    var newName = fullName.split('-').map(function(name){
+        return name.charAt(0).toUpperCase() + name.slice(1);
+    }).join(' ');
+    console.log(newName);
+
+
+    //Reposta Antiga
+    //console.log(fullName.charAt(0).toUpperCase() + fullName.slice(1).split('-').join(' '));
 
     /*
     - Crie um array com 5 nomes. Reduza esses nomes a uma única string, separando
@@ -48,9 +55,16 @@
     5 nomes foi somente uma sugestão ;)
     */
     console.log( '\nMeus amigos:' );
-    var nomes = ['João', 'Maria', 'Roberto', 'Pedro', 'Marcos'];
-    var indexVirgula = nomes.join().lastIndexOf(',');
-    console.log(nomes.join().slice(0 , indexVirgula)+' e '+ nomes.join().slice(indexVirgula + 1) +' são meus amigos');
+    var names = ['João', 'Maria', 'Roberto', 'Pedro', 'Marcos','José'];
+    var phrase = names.reduce(function(acumulado, atual, index){
+        var separator = names.length - 1 === index ? ' e ' : ', ';
+        return acumulado + separator + atual; 
+    }).concat(' são meus amigos. ');
+    console.log(phrase);
+
+    //Reposta Antiga
+    // var indexVirgula = nomes.join().lastIndexOf(',');
+    // console.log(nomes.join().slice(0 , indexVirgula)+' e '+ nomes.join().slice(indexVirgula + 1) +' são meus amigos');
 
     /*
     Usando o replace(), faça a string "Roberto" virar "Roberta".
@@ -83,7 +97,7 @@
         newName += myName.charAt(i).toUpperCase();
        } else {
         newName += myName.charAt(i).toLowerCase();
-       }
+       }     
    }
    console.log(newName);
 
