@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Challenge-23</title>
+
+    <style>
+        .container {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            width: 300px;
+            margin: 0 auto;
+            margin-top: 200px;
+
+        }
+
+        .display{
+            flex-basis: 100%;
+        }
+        .display input {
+            width: 220px;
+            height: 1.5em;
+        }
+
+        button {
+            padding: 20px;
+            margin-right: 3px;
+        }
+
+        .group3 {
+            margin-top: 10px;
+        }
+
+        .group2 {
+            margin-top: 10px;
+        }
+
+        .group1 {
+            margin-top: 10px;
+        }
+        .group0 {
+            margin-top: 10px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="container">
+
+
+        <div class="display">
+            <input data-js="display" type="text" value="0" readonly>
+        </div>
+
+        <br>
+
+        <div class="group3">
+            <button data-js="button-number" data-id="btnSeven" value="7">7</button>
+            <button data-js="button-number" data-id="btnEight" value="8">8</button>
+            <button data-js="button-number" data-id="btnNine" value="9">9</button>
+            <button data-js="button-operation" data-id="divison" value="÷">÷</button>
+        </div>
+        <br>
+        <div class="group2">
+            <button data-js="button-number" data-id="btnFour" value="4">4</button>
+            <button data-js="button-number" data-id="btnFive" value="5">5</button>
+            <button data-js="button-number" data-id="btnSix" value="6">6</button>
+            <button data-js="button-operation" data-id="multiplication" value="*">*</button>
+        </div>
+
+        <br>
+        <div class="group1">
+            <button data-js="button-number" data-id="btnOne" value="1">1</button>
+            <button data-js="button-number" data-id="btnTwo" value="2">2</button>
+            <button data-js="button-number" data-id="btnThree" value="3">3</button>
+            <button data-js="button-operation" data-id="subtraction" value="-">-</button>
+        </div>
+
+        <br>
+        <div class="group0">
+        <button data-js="button-number" data-id="btnZero" value="0">0</button>
+        <button data-js="btnCE" value="ce">CE</button>
+        <button data-js="btnEqual" value="=">=</button>
+        <button data-js="button-operation" data-id="sum" value="+">+</button>
+    </div>
+    </div>
+
+    <script src="challenge-23.js"></script>
+</body>
+
+</html>

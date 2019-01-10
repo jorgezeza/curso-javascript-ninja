@@ -1,3 +1,5 @@
+(function(win, doc){
+    'use strict'
 /*
 Vamos desenvolver mais um projeto. A ideia é fazer uma mini-calculadora.
 As regras são:
@@ -23,3 +25,75 @@ multiplicação (x), então no input deve aparecer "1+2x".
 input;
 - Ao pressionar o botão "CE", o input deve ficar zerado.
 */
+
+var $display = doc.querySelector('[data-js="display"]');
+var $buttonsNumbers = doc.querySelectorAll('[data-js="button-number"]');
+var $buttonCE = doc.querySelector('[data-js="btnCE"]');
+var $buttonsOperations = doc.querySelectorAll('[data-js="button-operation"]');
+var $buttonEqual = doc.querySelector('[data-js="btnEqual"]');
+
+Array.prototype.forEach.call($buttonsNumbers, function(button){
+    button.addEventListener('click', handleClickNumber, false);
+});
+
+Array.prototype.forEach.call($buttonsOperations, function(button){
+    button.addEventListener('click', handleClickOperation, false);
+});
+
+$buttonCE.addEventListener('click', handleClickCE, false);
+$buttonEqual.addEventListener('click', handleClickEqual, false);
+
+function handleClickNumber() {
+    $display.value += this.value;
+}
+
+function handleClickCE() {
+    $display.value = 0;
+}
+
+function handleClickOperation() {
+    $display.value = removeLastItemIfItIsAnOperator($display.value);
+    $display.value += this.value;
+}
+
+function isLastItemAnOperation(number) {
+    var operations = ['+','-','*','÷'];
+    var lastItem = number.split('').pop();
+    return operations.some(function(operator){
+        return operator === lastItem;
+    });
+}
+
+function removeLastItemIfItIsAnOperator(number) {
+    if(isLastItemAnOperation(number)){
+        return number.slice(0, -1);
+    }
+    return number;
+}
+
+function handleClickEqual() {
+    $display.value = removeLastItemIfItIsAnOperator($display.value);
+    var allValues = $display.value.match(/\d+[+*÷-]?/g);
+
+    $display.value = allValues.reduce(function(accumulated, actual){
+        var firstValue = accumulated.slice(0, -1);
+        var operator = accumulated.split('').pop();
+        var lasValue = removeLastItemIfItIsAnOperator(actual);
+        var lastOperator = isLastItemAnOperation(actual) ? actual.split('').pop() : '';
+        switch(operator) {
+            case '+':
+                return ( Number(firstValue) + Number(lasValue) ) + lastOperator;
+            case '-':
+                return ( Number(firstValue) - Number(lasValue) ) + lastOperator;
+            case '*':
+                return ( Number(firstValue) * Number(lasValue) ) + lastOperator;
+            case '÷':
+                return ( Number(firstValue) / Number(lasValue) ) + lastOperator;
+        }
+
+    });
+}
+
+
+
+})(window, document);
